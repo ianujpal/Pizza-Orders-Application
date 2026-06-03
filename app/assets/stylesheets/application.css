@@ -1,0 +1,343 @@
+/*
+ * Pizza Orders — application styles
+ */
+
+:root {
+  --color-bg: #f6f1ea;
+  --color-surface: #ffffff;
+  --color-surface-muted: #faf7f2;
+  --color-border: #e8ddd0;
+  --color-text: #2c241c;
+  --color-text-muted: #6b5f52;
+  --color-accent: #c73e2e;
+  --color-accent-hover: #a83224;
+  --color-accent-soft: #fdecea;
+  --color-success: #2d6a4f;
+  --color-success-soft: #e8f5ee;
+  --color-add: #1b6b4a;
+  --color-add-bg: #e6f4ed;
+  --color-remove: #9b4b1f;
+  --color-remove-bg: #fdf0e8;
+  --shadow-card: 0 4px 24px rgba(44, 36, 28, 0.08);
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --font-sans: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-text);
+  background:
+    radial-gradient(ellipse at top, #fff8f0 0%, transparent 55%),
+    var(--color-bg);
+}
+
+/* Orders page */
+
+.orders-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 4rem;
+}
+
+.orders-header {
+  margin-bottom: 2rem;
+}
+
+.orders-eyebrow {
+  margin: 0 0 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.orders-header h1 {
+  margin: 0;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.orders-subtitle {
+  margin: 0.5rem 0 0;
+  color: var(--color-text-muted);
+}
+
+.orders-grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+
+/* Order card */
+
+.order-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.order-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem 1.25rem 1rem;
+  background: linear-gradient(135deg, var(--color-accent-soft) 0%, var(--color-surface-muted) 100%);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.order-card__label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.order-card__id {
+  margin: 0.15rem 0 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.order-card__date {
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.order-card__codes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+  padding: 1rem 1.25rem 0;
+}
+
+.order-badge {
+  padding: 0.65rem 0.75rem;
+  background: var(--color-surface-muted);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.order-badge__label {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.order-badge__value {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* Items */
+
+.order-items {
+  padding: 1rem 1.25rem;
+  flex: 1;
+}
+
+.order-items__title {
+  margin: 0 0 0.75rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.order-items__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.order-item {
+  padding: 0.75rem 0.85rem;
+  background: var(--color-surface-muted);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.order-item__main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.order-item__name {
+  font-weight: 600;
+}
+
+.order-item__size {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  color: var(--color-text-muted);
+}
+
+.order-item__mods {
+  margin: 0.45rem 0 0;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: var(--radius-sm);
+}
+
+.order-item__mods span {
+  font-weight: 700;
+  margin-right: 0.35rem;
+}
+
+.order-item__mods--add {
+  background: var(--color-add-bg);
+  color: var(--color-add);
+}
+
+.order-item__mods--remove {
+  background: var(--color-remove-bg);
+  color: var(--color-remove);
+}
+
+/* Footer */
+
+.order-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem 1.25rem;
+  border-top: 1px solid var(--color-border);
+  background: var(--color-surface-muted);
+}
+
+.order-card__total span {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.order-card__total strong {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.order-card__form {
+  margin: 0;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1.1rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.2;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.btn--primary {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.btn--primary:hover {
+  background: var(--color-accent-hover);
+}
+
+.btn--primary:active {
+  transform: scale(0.98);
+}
+
+/* Empty state */
+
+.orders-empty {
+  text-align: center;
+  padding: 3.5rem 1.5rem;
+  background: var(--color-surface);
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.orders-empty__title {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.orders-empty__text {
+  margin: 0;
+  color: var(--color-text-muted);
+  max-width: 28rem;
+  margin-inline: auto;
+}
+
+@media (max-width: 480px) {
+  .orders-page {
+    padding: 1.5rem 1rem 3rem;
+  }
+
+  .order-card__header {
+    flex-direction: column;
+  }
+
+  .order-card__date {
+    text-align: left;
+  }
+
+  .order-card__codes {
+    grid-template-columns: 1fr;
+  }
+
+  .order-card__footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .order-card__form .btn {
+    width: 100%;
+  }
+}

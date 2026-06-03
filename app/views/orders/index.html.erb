@@ -1,0 +1,92 @@
+<div class="orders-page">
+  <header class="orders-header">
+    <p class="orders-eyebrow">Pizza Orders</p>
+    <h1>Open orders</h1>
+    <p class="orders-subtitle">
+      <%= pluralize(@orders.size, "order") %> waiting to be completed
+    </p>
+  </header>
+
+  <% if @orders.any? %>
+    <div class="orders-grid">
+      <% @orders.each do |order| %>
+        <article class="order-card">
+          <div class="order-card__header">
+            <div>
+              <span class="order-card__label">Order ID</span>
+              <h2 class="order-card__id"><%= order.order_id %></h2>
+            </div>
+            <time class="order-card__date" datetime="<%= order.created_at_external.iso8601 %>">
+              <%= order.created_at_external.strftime("%b %d, %Y · %H:%M") %>
+            </time>
+          </div>
+
+          <div class="order-card__codes">
+            <div class="order-badge">
+              <span class="order-badge__label">Promotions</span>
+              <span class="order-badge__value">
+                <%= order.promotion_codes&.join(", ").presence || "None" %>
+              </span>
+            </div>
+            <div class="order-badge">
+              <span class="order-badge__label">Discount</span>
+              <span class="order-badge__value">
+                <%= order.discount_code.presence || "None" %>
+              </span>
+            </div>
+          </div>
+
+          <section class="order-items">
+            <h3 class="order-items__title">Items</h3>
+            <ul class="order-items__list">
+              <% order.items.each do |item| %>
+                <li class="order-item">
+                  <div class="order-item__main">
+                    <span class="order-item__name"><%= item["name"] %></span>
+                    <span class="order-item__size"><%= item["size"] %></span>
+                  </div>
+
+                  <% if item["add"].present? %>
+                    <p class="order-item__mods order-item__mods--add">
+                      <span>Extra</span>
+                      <%= item["add"].join(", ") %>
+                    </p>
+                  <% end %>
+
+                  <% if item["remove"].present? %>
+                    <p class="order-item__mods order-item__mods--remove">
+                      <span>No</span>
+                      <%= item["remove"].join(", ") %>
+                    </p>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </section>
+
+          <footer class="order-card__footer">
+            <div class="order-card__total">
+              <span>Total</span>
+              <strong>
+                <%= number_to_currency(order.total_price, unit: "€") %>
+              </strong>
+            </div>
+
+            <%= button_to "Mark complete",
+                  order_path(order),
+                  method: :patch,
+                  class: "btn btn--primary",
+                  form: { class: "order-card__form" } %>
+          </footer>
+        </article>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="orders-empty">
+      <p class="orders-empty__title">No open orders</p>
+      <p class="orders-empty__text">
+        All caught up. New orders will appear here when they are opened.
+      </p>
+    </div>
+  <% end %>
+</div>
